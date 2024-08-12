@@ -1,0 +1,67 @@
+header {
+    background-color: #004080 !important;
+    color: white;
+    padding: 50px 0;
+    margin-top: -2pc;
+  }
+  
+  header h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  header .input-group {
+    max-width: 500px;
+  }
+  
+  header .form-control {
+    border-radius: 0;
+  }
+  
+  header .btn {
+    border-radius: 0;
+  }
+  
+  .container {
+    margin-top: 40px;
+  }
+  
+  form {
+    max-width: 1100px;
+    margin: auto;
+    margin-left: 1pc;
+  }
+  
+  form .form-group label {
+    font-weight: bold;
+  }
+  
+  .submit-btn {
+    background-color: #004080;
+    color: white;
+  }
+
+  .community-h2 {
+    text-align: center;
+    font-weight: bolder;
+    color: #004080;
+  }
+
+  .community-h6 {
+    text-align: center;
+  }
+
+  .community-form-control {
+    background-color: lightblue;
+  }
+
+  input[type="file"] {
+    border: 1px solid lightblue;
+    border-radius: .25rem;
+    padding: .375rem .75rem;
+    height: calc(1.5em + .75rem + 2px);
+  }
+  
+  input[type="file"]::file-selector-button {
+    display: none;
+  }

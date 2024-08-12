@@ -1,0 +1,49 @@
+.main_card {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    width: 125ch !important;
+    margin-left: 15ch;
+    background-color: #b8d9fac0 !important;
+    align-self: center;
+}
+
+.card_image_top {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    width: 125ch !important;
+    height: 40ch !important;
+}
+
+.card_title {
+    color: #004080 !important;
+}
+
+.learn-h1 {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: #3a72b4;
+    font-size: 8ch;
+}
+
+.main_card {
+    position: relative;
+    overflow: hidden;
+}
+
+.main_card {
+    transition: transform 0.3s ease;
+}
+
+.main_card:hover {
+    transform: scale(1.05);
+    border: 1ch;
+    border-radius: 2ch;
+}
+
+.btn_offer {
+    background-color: #004080;
+    color: white;
+    font-weight: bold;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}

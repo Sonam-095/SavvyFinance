@@ -1,0 +1,49 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.bg-blue {
+    background-color: #004080;
+
+}
+
+.navbar-nav .nav-link {
+    margin-right: 20px;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-family: cursive;
+    font-weight: bolder;
+    font-style: oblique;
+    font-size: x-large;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0px;
+    top: 50px;
+    background-color: #00408087;
+    height: 550px;
+    width: 250px;
+    border-radius: 0;
+}
+
+/* Show dropdown when icon is focused */
+#menuIcon:focus-within .dropdown-menu {
+    display: block;
+}
+
+.dropdown-item {
+    color: #fff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}

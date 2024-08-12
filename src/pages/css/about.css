@@ -1,0 +1,78 @@
+.about-body {
+    background: linear-gradient(to left, #91c0fa, #daecff);
+    font-family: Arial, sans-serif;
+}
+
+.about-h1 {
+    color: #3a72b4;
+    font-size: 6em;
+    font-weight: bolder;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.about-p {
+    color: #333;
+    font-size: 1em;
+    line-height: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400 !important;
+}
+
+.circle-image-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    margin-top: -12pc !important;
+}
+
+.circle-image {
+    border-radius: 50%;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    margin-bottom: 20px;
+    border: 2px solid #004080;
+}
+
+.overlap-image {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    width: 80%;
+    max-width: 200px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 2px solid #004080;
+}
+
+.overlap-image2 {
+    position: absolute;
+    top: 70%;
+    left: 10%;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 2px solid #004080;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.my-5 {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+}
+
+.about-container {
+    margin-bottom: -10pc !important;
+}

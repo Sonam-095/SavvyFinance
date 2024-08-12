@@ -1,0 +1,22 @@
+.signup-body {
+    background: linear-gradient(to bottom, #0C4D88 50%, #D7E4EF 50%);
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.signup-box {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.signup-h2 {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
