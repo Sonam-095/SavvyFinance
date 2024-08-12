@@ -5,6 +5,9 @@ const app = express();
 const authroute = require("./router/auth-router");
 const contactroute = require("./router/contact-router");
 const expenseroute = require("./router/expense-router");
+const incomeroute = require("./router/income-router");
+const budgetroute = require("./router/budget-router");
+const savingroute = require("./router/saving-router");
 const connectDb = require("./utils/db");
 const errormiddleware = require("./middlewares/error-middleware");
 
@@ -21,6 +24,9 @@ app.use(express.json());
 app.use("/api/auth", authroute);
 app.use("/api/contactform", contactroute);
 app.use("/api/expense", expenseroute);
+app.use("/api/income", incomeroute);
+app.use("/api/budget", budgetroute);
+app.use("/api/savings", savingroute);
 
 app.use(errormiddleware);
 

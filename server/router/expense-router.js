@@ -3,6 +3,15 @@ const router = express.Router();
 const Expense = require("../models/expense-model");
 
 
+router.get('/', async (req, res) => {
+  try {
+      const expense = await Expense.find(); // Fetch all data from the database
+      res.json(expense); // Send data as JSON
+  } catch (error) {
+      res.status(500).json({ message: 'Error fetching expenses' });
+  }
+});
+
 router.post("/", async (req, res) => {
   try {
     console.log(req.body);
@@ -40,7 +49,7 @@ router.delete("/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const expense = await Expense.findByIdAndDelete(id);
-    if (!expense) return res.status(404).send();
+    if (!expense) return res.status(404).send('expense not found');
     res.status(200).send(expense);
   } catch (err) {
     res.status(500).send(err);

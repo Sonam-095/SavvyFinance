@@ -3,6 +3,7 @@ import { Footer } from "../components/Foot";
 import "./css/expense.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 
 export const ExpenseTracking = () => {
@@ -14,12 +15,12 @@ export const ExpenseTracking = () => {
     amount: "",
 });
 
-// const navigate = useNavigate();
+const navigate = useNavigate();
 
 
 // fetch existing records from backend
 useEffect(() => {
-  axios.post('http://localhost:5000/api/expense/expense tracking')
+  axios.get('http://localhost:5000/api/expense')
       .then(response => { setexpenses(response.data); })
       .catch(error => console.error('Error fetching expenses:', error));
   }, []);
@@ -50,12 +51,14 @@ try {
         body:JSON.stringify(expense),
     });
     if(response.ok){
-        setexpense({
+      const savedExpense = await response.json();
+            setexpenses([...expenses, savedExpense]);  
+      setexpense({
             description: "",
             category: "",
             amount: "",});
             alert("expense updated")
-            // navigate("");
+            navigate("/expense tracking");
         }
     console.log(response); 
 } catch (error) {
@@ -65,7 +68,7 @@ try {
 };
 
 const deleteexpense = (id) => {
-  axios.delete(`/api/expense/${id}`)
+  axios.delete(`http://localhost:5000/api/expense/${id}`)
     .then(() => setexpenses(expenses.filter(expense => expense._id !== id)))
     .catch(error => console.error('Error deleting expense:', error));
 };

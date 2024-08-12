@@ -1,0 +1,40 @@
+.income-body {
+    background-color: #fff; /* Adjust as needed */
+  }
+  
+.income-h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    font-weight: bolder;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #004080;
+  }
+  
+  table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-left: 8pc;
+  }
+  
+  th, td {
+    padding: 10px;
+    border: 1px solid #ffffff;    
+    background-color: #004080;
+    color: #ffffff;
+    font-weight: lighter;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #004080;
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+
+  .income-form{
+    margin-left: 20pc;
+  }
+  
