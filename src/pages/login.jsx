@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-regular-svg-icons/faEye";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../store/auth";
 
 export const Login = () => {
     const [user, setuser] = useState({
@@ -13,6 +14,8 @@ export const Login = () => {
     });
 
     const navigate = useNavigate();
+
+    const { storeTokenInLs } = useAuth();
 
 
 // handling input
@@ -41,8 +44,12 @@ const handlesubmit = async (e) => {
             body:JSON.stringify(user),
         });
         if(response.ok){
+            const res_data = await response.json();
+            storeTokenInLs(res_data.token);
+            // localStorage.setItem("token",res_data.token);
             setuser({email: "",
                 password: "",});
+                // localStorage.setItem('userId', response.data.userId);
                 navigate("/home");
         }
         else {

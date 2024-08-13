@@ -2,8 +2,13 @@ import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons/faBars";
+import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
+import { useAuth } from "../store/auth";
 
 export const Navbar = () => {
+
+    const isloggedin = useAuth();
+
     return <>
         <nav className="navbar navbar-expand-lg navbar-light bg-blue">
             <NavLink className="navbar-brand" to="/home">SavvyFinance</NavLink>
@@ -16,7 +21,11 @@ export const Navbar = () => {
                     <li className="nav-item"><NavLink className="nav-link text-white" to="/contact">Community and Support</NavLink></li>
                 </ul>
                 <ul className="navbar-nav">
-                    <li className="nav-item"><NavLink className="nav-link text-white" to="/logout">Logout</NavLink></li>
+
+                    {isloggedin ? (<li className="nav-item"><NavLink className="nav-link text-white" to="/logout">Logout</NavLink></li>) 
+                    : <> (<li className="nav-item"><NavLink className="nav-link text-white" to="/logout"><FontAwesomeIcon icon={faUser} /></NavLink></li>) </>}
+                    
+                    
 
                     <div id="menuIcon" className="dropdown">
 

@@ -20,7 +20,8 @@ const navigate = useNavigate();
 
 // fetch existing records from backend
 useEffect(() => {
-  axios.get('http://localhost:5000/api/savings')
+  const userId = localStorage.getItem('userId');
+  axios.get(`http://localhost:5000/api/savings?userId=${userId}`)
       .then(response => { setsavings(response.data); })
       .catch(error => console.error('Error fetching savings:', error));
   }, []);
@@ -38,17 +39,20 @@ const handleinput = (e) => {
 
 };
 
+
+const userId = localStorage.getItem('userId');
+
 // handling from submission
 const handlesubmit = async (e) => {
 e.preventDefault();
 console.log(saving);
 try {
-    const response = await fetch(`http://localhost:5000/api/savings`, {
+    const response = await fetch(`http://localhost:5000/api/savings?userId=${userId}`, {
         method:"POST",
         headers:{
             'Content-Type':"application/json",
         },
-        body:JSON.stringify(saving),
+        body:JSON.stringify({ ...saving, userId }),
     });
     if(response.ok){
       const savedSaving = await response.json();

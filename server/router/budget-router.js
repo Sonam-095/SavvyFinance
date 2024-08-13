@@ -3,14 +3,24 @@ const router = express.Router();
 const Budget = require("../models/budget-model");
 
 
-router.get('/', async (req, res) => {
+router.get('/:userId', async (req, res) => {
   try {
-      const budget = await Budget.find(); // Fetch all data from the database
-      res.json(budget); // Send data as JSON
+    const userId = req.user._id; 
+    const budget = await Budget.find({ userId });
+    res.json(budget);
   } catch (error) {
-      res.status(500).json({ message: 'Error fetching budget' });
+    res.status(500).json({ message: 'Error fetching budgets' });
   }
 });
+
+// router.get('/', async (req, res) => {
+//   try {
+//       const budget = await Budget.find(); // Fetch all data from the database
+//       res.json(budget); // Send data as JSON
+//   } catch (error) {
+//       res.status(500).json({ message: 'Error fetching budget' });
+//   }
+// });
 
 router.post("/", async (req, res) => {
   try {

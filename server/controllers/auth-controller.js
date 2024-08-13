@@ -19,9 +19,9 @@ const signup = async (req, res) => {
         console.log(req.body);
         const { email, password } = req.body;
 
-        const userexist = await User.findOne({ email });
+        const userExist = await User.findOne({ email });
 
-        if(userexist) {
+        if(userExist) {
             return res.status(400).json({msg: "email already exists"})
         }
 
@@ -29,9 +29,9 @@ const signup = async (req, res) => {
         const saltround = 10;
         const hash_password = await bcrypt.hash(password, saltround);
 
-        const usercreated = await User.create ({ email, password: hash_password, });
+        const userCreated = await User.create ({ email, password: hash_password, });
 
-        res.status(200).send({ msg : usercreated, token: await usercreated.generatetoken(), userid:usercreated._id.toString(), });
+        res.status(200).send({ msg : userCreated, token: await userCreated.generatetoken(), userId:userCreated._id.toString(), });
     } catch (error) {
         // res.status(500).json("internal server error");
         next(error);
@@ -53,7 +53,7 @@ const login = async (req, res) => {
         const user = await bcrypt.compare(password, userexist.password);
 
         if(user) {
-            res.status(200).send({ msg : "login succesful", token: await userexist.generatetoken(), userid:userexist._id.toString(), });
+            res.status(200).send({ msg : "login succesful", token: await userexist.generatetoken(), userId:userexist._id.toString(), });
         }
         else {
             res.status(401).json({message: "invalid email or password"})

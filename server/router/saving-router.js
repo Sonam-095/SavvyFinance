@@ -3,14 +3,24 @@ const router = express.Router();
 const Savings = require("../models/savings-model");
 
 
-router.get('/', async (req, res) => {
+router.get('/:userId', async (req, res) => {
   try {
-      const saving = await Savings.find(); // Fetch all data from the database
-      res.json(saving); // Send data as JSON
+    const userId = req.user._id; 
+    const saving = await Savings.find({ userId });
+    res.json(saving);
   } catch (error) {
-      res.status(500).json({ message: 'Error fetching saving' });
+    res.status(500).json({ message: 'Error fetching savings' });
   }
 });
+
+// router.get('/', async (req, res) => {
+//   try {
+//       const saving = await Savings.find(); // Fetch all data from the database
+//       res.json(saving); // Send data as JSON
+//   } catch (error) {
+//       res.status(500).json({ message: 'Error fetching saving' });
+//   }
+// });
 
 router.post("/", async (req, res) => {
   try {

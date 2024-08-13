@@ -17,17 +17,34 @@ const userschema = new mongoose.Schema({
     },
 });
 
+userschema.pre("save", async function(next) {
+    const user = this;
+
+    if(!user.isModified("password")) {
+        next();
+    }
+
+    try {
+        const saltround = await bcrypt.genSalt(10);
+        const hash_password = await bcrypt.hash(user.password, saltround);
+        user.password = hash_password;
+    } catch (error) {
+        next(error);
+    } 
+} );
+
+
 // json web token
 userschema.methods.generatetoken = async function () {
     try {
         return jwt.sign({
-            userid: this._id.toString(),
+            userId: this._id.toString(),
             email: this.email,
-            isasmin:this.isadmin,
+            isadmin:this.isadmin,
         },
     process.env.JWT_MY_KEY,
     {
-        expiresin: "30d",
+        expiresIn: "30d",
     }
     );
     } catch (error) {

@@ -3,14 +3,24 @@ const router = express.Router();
 const Expense = require("../models/expense-model");
 
 
-router.get('/', async (req, res) => {
+router.get('/:userId', async (req, res) => {
   try {
-      const expense = await Expense.find(); // Fetch all data from the database
-      res.json(expense); // Send data as JSON
+    const userId = req.user._id; 
+    const expense = await Expense.find({ userId });
+    res.json(expense);
   } catch (error) {
-      res.status(500).json({ message: 'Error fetching expenses' });
+    res.status(500).json({ message: 'Error fetching expenses' });
   }
 });
+
+// router.get('/', async (req, res) => {
+//   try {
+//       const expense = await Expense.find(); // Fetch all data from the database
+//       res.json(expense); // Send data as JSON
+//   } catch (error) {
+//       res.status(500).json({ message: 'Error fetching expenses' });
+//   }
+// });
 
 router.post("/", async (req, res) => {
   try {

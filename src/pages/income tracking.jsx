@@ -20,7 +20,8 @@ const navigate = useNavigate();
 
 // fetch existing records from backend
 useEffect(() => {
-  axios.get('http://localhost:5000/api/income')
+  const userId = localStorage.getItem('userId');
+  axios.get(`http://localhost:5000/api/income?userId=${userId}`)
       .then(response => { setincomes(response.data); })
       .catch(error => console.error('Error fetching incomes:', error));
   }, []);
@@ -38,17 +39,20 @@ const handleinput = (e) => {
 
 };
 
+const userId = localStorage.getItem('userId');
+
+
 // handling from submission
 const handlesubmit = async (e) => {
 e.preventDefault();
 console.log(income);
 try {
-    const response = await fetch(`http://localhost:5000/api/income`, {
+    const response = await fetch(`http://localhost:5000/api/income?userId=${userId}`, {
         method:"POST",
         headers:{
             'Content-Type':"application/json",
         },
-        body:JSON.stringify(income),
+        body:JSON.stringify({ ...income, userId }),
     });
     if(response.ok){
       const savedIncome = await response.json();

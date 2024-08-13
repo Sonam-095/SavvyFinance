@@ -13,17 +13,29 @@ export const ExpenseTracking = () => {
     description: "",
     category: "",
     amount: "",
+    userId: localStorage.getItem('userId')
 });
 
 const navigate = useNavigate();
 
+const userId = localStorage.getItem('userId');
 
 // fetch existing records from backend
 useEffect(() => {
-  axios.get('http://localhost:5000/api/expense')
-      .then(response => { setexpenses(response.data); })
-      .catch(error => console.error('Error fetching expenses:', error));
-  }, []);
+  const userId = localStorage.getItem('userId');
+  // axios.get(`http://localhost:5000/api/expense/${userId}`)
+  //     .then(response => { setexpenses(response.data); })
+  //     .catch(error => console.error('Error fetching expenses:', error));
+  // }, []
+  try {
+    axios.get(`http://localhost:5000/api/expense/${userId}`).then((res) => {
+      console.log(res);
+    });
+  } catch (error) {
+    console.error("Error fetching expenses:", error);
+  }
+}, []
+);
 
 // handling input
 const handleinput = (e) => {
@@ -38,6 +50,8 @@ const handleinput = (e) => {
 
 };
 
+
+
 // handling from submission
 const handlesubmit = async (e) => {
 e.preventDefault();
@@ -48,7 +62,7 @@ try {
         headers:{
             'Content-Type':"application/json",
         },
-        body:JSON.stringify(expense),
+        body:JSON.stringify({ ...expense, userId}),
     });
     if(response.ok){
       const savedExpense = await response.json();
@@ -56,7 +70,8 @@ try {
       setexpense({
             description: "",
             category: "",
-            amount: "",});
+            amount: "",
+            userId: localStorage.getItem('userId')});
             alert("expense updated")
             navigate("/expense tracking");
         }
