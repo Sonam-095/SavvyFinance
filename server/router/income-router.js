@@ -2,25 +2,14 @@ const express = require("express");
 const router = express.Router();
 const Income = require("../models/income-model");
 
-
-router.get('/:userId', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const userId = req.user._id; 
-    const income = await Income.find({ userId });
-    res.json(income);
+      const income = await Income.find(); // Fetch all data from the database
+      res.json(income); // Send data as JSON
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching income' });
+      res.status(500).json({ message: 'Error fetching income' });
   }
 });
-
-// router.get('/', async (req, res) => {
-//   try {
-//       const income = await Income.find(); // Fetch all data from the database
-//       res.json(income); // Send data as JSON
-//   } catch (error) {
-//       res.status(500).json({ message: 'Error fetching income' });
-//   }
-// });
 
 router.post("/", async (req, res) => {
   try {

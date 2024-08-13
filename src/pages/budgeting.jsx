@@ -20,8 +20,7 @@ const navigate = useNavigate();
 
 // fetch existing records from backend
 useEffect(() => {
-  const userId = localStorage.getItem('userId');
-  axios.get(`http://localhost:5000/api/budget?userId=${userId}`)
+  axios.get(`http://localhost:5000/api/budget`)
       .then(response => { setbudgets(response.data); })
       .catch(error => console.error('Error fetching budgets:', error));
   }, []);
@@ -39,20 +38,17 @@ const handleinput = (e) => {
 
 };
 
-const userId = localStorage.getItem('userId');
-
-
 // handling from submission
 const handlesubmit = async (e) => {
 e.preventDefault();
 console.log(budget);
 try {
-    const response = await fetch(`http://localhost:5000/api/budget?userId=${userId}`, {
+    const response = await fetch(`http://localhost:5000/api/budget`, {
         method:"POST",
         headers:{
             'Content-Type':"application/json",
         },
-        body:JSON.stringify({ ...budget, userId }),
+        body:JSON.stringify(budget),
     });
     if(response.ok){
       const savedBudget = await response.json();
