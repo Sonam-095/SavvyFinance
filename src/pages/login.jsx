@@ -31,6 +31,7 @@ export const Login = () => {
 
     };
 
+    
 // handling from submission
 const handlesubmit = async (e) => {
     e.preventDefault();
@@ -46,10 +47,11 @@ const handlesubmit = async (e) => {
         if(response.ok){
             const res_data = await response.json();
             storeTokenInLs(res_data.token);
-            // localStorage.setItem("token",res_data.token);
+            localStorage.setItem("token",res_data.token);
+            localStorage.setItem("userId", res_data.userId);
+            
             setuser({email: "",
                 password: "",});
-                // localStorage.setItem('userId', response.data.userId);
                 navigate("/home");
         }
         else {

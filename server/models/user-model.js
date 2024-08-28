@@ -6,6 +6,7 @@ const userschema = new mongoose.Schema({
     email:{
         type:String,
         require:true,
+        unique:true,
     },
     password:{
         type:String,
@@ -28,6 +29,7 @@ userschema.pre("save", async function(next) {
         const saltround = await bcrypt.genSalt(10);
         const hash_password = await bcrypt.hash(user.password, saltround);
         user.password = hash_password;
+        next();
     } catch (error) {
         next(error);
     } 
@@ -38,9 +40,9 @@ userschema.pre("save", async function(next) {
 userschema.methods.generatetoken = async function () {
     try {
         return jwt.sign({
-            userId: this._id.toString(),
+            userId: this._id,
             email: this.email,
-            isadmin:this.isadmin,
+            isAdmin:this.isAdmin,
         },
     process.env.JWT_MY_KEY,
     {
