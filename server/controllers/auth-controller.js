@@ -2,6 +2,7 @@ const User = require ("../models/user-model");
 const bcrypt = require ("bcryptjs");
 const jwt = require ("jsonwebtoken");
 
+
 // home logic
 
 const home = async (req, res) => {
@@ -29,7 +30,7 @@ const signup = async (req, res) => {
         // const saltround = 10;
         const hash_password = await bcrypt.hash(password, 10);
 
-        const userCreated = await User.create ({ email, password: hash_password, });
+        const userCreated = await User.create ({ email, password, });
 
         res.status(200).send({ msg : userCreated, token: await userCreated.generatetoken(), userId:userCreated._id.toString(), });
     } catch (error) {
@@ -54,7 +55,9 @@ const login = async (req, res) => {
         console.log("Stored Password Hash:", userexist.password);
         console.log("Provided Password:", password);
 
-        const user = await bcrypt.compare(password, userexist.password);
+        // const user = await bcrypt.compare(password, userexist.password);
+        const user = await userexist.comparePassword(password);
+
         console.log(user);
         if(user) {
             res.status(200).send({ msg : "login succesful", token: await userexist.generatetoken(), userId:userexist._id.toString() });
@@ -67,8 +70,6 @@ const login = async (req, res) => {
         res.status(500).json("internal server error");
     }
 };
-
-
 
 
 
