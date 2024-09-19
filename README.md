@@ -1,8 +1,10 @@
-# React + Vite
+# MERN Site
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This website is a basic finance tracking site.
+It can be used to track personal finance.
+It can track expenses, income generated, budget and savings can be tracked too.
+It can even provide articles for financial knowledge.
+It even has a contact us form.
+It has user authentication.
+It generates token when a user logs in and deletes that specific token when that user logs out.
+All the data is saved at the backend using MongoDB(NoSql).
